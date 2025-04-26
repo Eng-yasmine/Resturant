@@ -56,28 +56,28 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="menu.html" class="nav-item nav-link">Menu</a>
+                        <a href="{{ route('pages.index') }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ route('pages.about') }}" class="nav-item nav-link">About</a>
+                        <a href="{{ route('pages.service') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ route('pages.menu') }}" class="nav-item nav-link">Menu</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="booking.html" class="dropdown-item">Booking</a>
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="{{ route('pages.booking') }}" class="dropdown-item">Booking</a>
+                                <a href="{{ route('pages.team') }}" class="dropdown-item">Our Team</a>
+                                <a href="{{ route('pages.testimonial') }}" class="dropdown-item">Testimonial</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('pages.contact') }}" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+                    <a href="{{ route('pages.dashboard') }}" class="btn btn-primary py-2 px-4">DashBoard</a>
                 </div>
             </nav>
 
         @yield('content')
 
         <!-- About Start -->
-   
+
         <!-- Team End -->
 
 
