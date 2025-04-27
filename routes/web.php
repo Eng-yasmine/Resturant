@@ -25,7 +25,7 @@ Route::controller(HomeController::class)->prefix('Admin.pages')->as('pages.')->g
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('User.pages.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
