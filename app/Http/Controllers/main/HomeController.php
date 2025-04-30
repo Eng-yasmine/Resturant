@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +13,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('Admin.pages.index');
+        Debugbar::info("1234");
+        return view('Admin.pages.index');
     }
 
     /**

@@ -9,8 +9,8 @@ A restaurant management system built with Laravel and Laravel Breeze for authent
 - **Authentication System** using Laravel Breeze.
 - Manage:
   - Menu Items & Categories
-  - Orders and Order Details
-  - Customers and Employees
+  - Orders & Order Details
+  - Customers & Employees
   - Feedbacks from customers
   - Blog posts
 - Role-based access using **Policies**.

@@ -5,9 +5,9 @@ use App\Http\Controllers\main\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('User.pages.index');
-});
+// Route::get('/', function () {
+//     return view('User.pages.index');
+// });
 
 Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->group(function () {
     Route::get('/', 'index')->name('index');
@@ -20,13 +20,12 @@ Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->gr
     Route::get('testimonial', 'testimonial')->name('testimonial');
 });
 
-Route::controller(HomeController::class)->prefix('Admin.pages')->as('pages.')->group(function () {
-    Route::get('index', 'index')->name('dashboard');
-});
+// Route::controller(HomeController::class)->prefix('Admin.pages')->as('pages.')->group(function () {
 
-Route::get('/dashboard', function () {
-    return view('User.pages.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// });
+
+Route::get('/dashboard',[HomeController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

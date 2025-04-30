@@ -115,6 +115,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end m-0">
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">DashBoard</a>
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
