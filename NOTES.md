@@ -16,9 +16,7 @@
 - `php artisan migrate`
 - `npm install`
 - `npm run dev`
-- *to run migration*
+- *to create migrations , Model , Factory , Seeder , Controller , FormRequest ,Policy*
 - `php artisan make:model Model -a`
-*المشاكل اللي واجهتني:*
 
-*ملاحظات/تعليقات:*
 

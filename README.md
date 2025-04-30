@@ -1,3 +1,58 @@
+# Restaurant Management System
+
+A restaurant management system built with Laravel and Laravel Breeze for authentication. This system allows managing menu items, categories, orders, customers, employees, feedback, and blog posts.
+
+---
+
+## Features
+
+- **Authentication System** using Laravel Breeze.
+- Manage:
+  - Menu Items & Categories
+  - Orders and Order Details
+  - Customers and Employees
+  - Feedbacks from customers
+  - Blog posts
+- Role-based access using **Policies**.
+- Dummy data using **Factories** and **Seeders**.
+
+---
+
+## Tech Stack
+
+- PHP (Laravel)
+- MySQL
+- Laravel Breeze
+- Bootstrap 5
+- RESTful API structure
+
+---
+
+## Database Schema Overview
+
+- **categories**: Belongs to menu & menu items.
+- **menu_items**: Has many categories & feedbacks.
+- **orders**: Belongs to customers.
+- **order_details**: Belongs to orders and menu items.
+- **employees**: Manages internal data and posts.
+- **customers**: Can create orders and give feedback.
+- **feedbacks**: From customers on menu items.
+- **posts**: Blog articles managed by employees.
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/Eng-yasmine/Resturant.git
+cd restaurant-system
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+npm install && npm run dev
+php artisan serve
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
