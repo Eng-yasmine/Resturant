@@ -15,6 +15,8 @@ A restaurant management system built with Laravel and Laravel Breeze for authent
   - Blog posts
 - Role-based access using **Policies**.
 - Dummy data using **Factories** and **Seeders**.
+- Organized **RESTful API** structure.
+- Debugging with **Laravel Debugbar**.
 
 ---
 
@@ -25,6 +27,7 @@ A restaurant management system built with Laravel and Laravel Breeze for authent
 - Laravel Breeze
 - Bootstrap 5
 - RESTful API structure
+- Laravel Debugbar
 
 ---
 
@@ -44,14 +47,37 @@ A restaurant management system built with Laravel and Laravel Breeze for authent
 ## Installation
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/Eng-yasmine/Resturant.git
 cd restaurant-system
+
+# 2. Install PHP dependencies
 composer install
+
+# 3. Set up environment file
 cp .env.example .env
 php artisan key:generate
+
+# 4. Set up database
 php artisan migrate --seed
+
+# 5. Install front-end dependencies
 npm install && npm run dev
+
+# 6. Run the application
 php artisan serve
+
+*Additional Setup*
+- `Laravel Breeze (for authentication)`
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+
+*Laravel Debugbar (for debugging)*
+-`composer require barryvdh/laravel-debugbar --dev`
+-`php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"`
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 

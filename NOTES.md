@@ -22,4 +22,34 @@
 - *to create migrations , Model , Factory , Seeder , Controller , FormRequest ,Policy*
 - `php artisan make:model Model -a`
 
+## Day 2 - [1-5-2025]
+*اليوم اشتغلت على:*
+[Eloquent Relationships]
 
+[تطبيق علاقات hasMany و belongsTo]
+
+[تحديد الجدول الأب والابن ووضع الـ foreign keys في مكانها الصحيح]
+
+*الخطوات اللي عملتها:*
+
+ ## Day 2 - [1-5-2025]  
+*Today's focus:*  
+[`hasMany`] and [`belongsTo`] Eloquent Relationships  
+[`foreign keys`] and identifying the [`parent`] and [`child`] tables
+
+---
+
+**Steps I completed:**
+
+- Defined a relationship between `orders` and `order_details`:  
+  - `Order` → `hasMany(OrderDetail::class)`  
+  - `OrderDetail` → `belongsTo(Order::class)`
+
+- Understood where the `foreign key` should be placed and wrote it inside the `order_details` migration.
+
+- Applied the same concept to `menu_items` and `feedbacks`:  
+  - `MenuItem` → `hasMany(Feedback::class)`  
+  - `Feedback` → `belongsTo(MenuItem::class)`
+
+- Reviewed the relationship between `posts` and `employees`, and confirmed correct usage of:  
+  - `foreignId('employee_id')->constrained()->cascadeOnDelete();`
