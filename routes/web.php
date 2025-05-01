@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->group(function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/', 'index')->name('index')->withoutMiddleware('auth');
     Route::get('contact', 'contact')->name('contact');
-    Route::get('about', 'about')->name('about');
+    Route::get('about', 'about')->name('about')->withoutMiddleware('auth');
     Route::get('booking', 'booking')->name('booking');
     Route::get('menu', 'menu')->name('menu');
     Route::get('team', 'team')->name('team');
     Route::get('service', 'service')->name('service');
     Route::get('testimonial', 'testimonial')->name('testimonial');
-});
+})->middleware('auth');
 
 // Route::controller(HomeController::class)->prefix('Admin.pages')->as('pages.')->group(function () {
 

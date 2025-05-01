@@ -9,4 +9,9 @@ class Feedback extends Model
 {
     /** @use HasFactory<\Database\Factories\FeedbackFactory> */
     use HasFactory;
+
+    public function customer()
+    {
+  return $this->hasMany(Feedback::class);
+    }
 }

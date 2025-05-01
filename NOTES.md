@@ -7,7 +7,9 @@
 ## Day 1 - [30-4-2025]
 *اليوم اشتغلت على:*
  [Laravel Breeze]
+ [RESTful API]
  [migration-model-Factory-seeders-Controller]
+ [run migrations]
 
 
 *الخطوات اللي عملتها:*
@@ -16,6 +18,7 @@
 - `php artisan migrate`
 - `npm install`
 - `npm run dev`
+- **
 - *to create migrations , Model , Factory , Seeder , Controller , FormRequest ,Policy*
 - `php artisan make:model Model -a`
 
