@@ -12,6 +12,11 @@ class Feedback extends Model
 
     public function customer()
     {
-  return $this->hasMany(Feedback::class);
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function menu_item()
+    {
+        return $this->belongsTo(MenuItem::class);
     }
 }

@@ -13,6 +13,11 @@ class Customer extends Model
 
     public function feedback()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

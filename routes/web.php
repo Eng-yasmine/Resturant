@@ -5,12 +5,10 @@ use App\Http\Controllers\main\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('User.pages.index');
-// });
+Route::get('/', [PageController::class,'index'])->name('pages.index');
+
 
 Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->group(function () {
-    Route::get('/', 'index')->name('index')->withoutMiddleware('auth');
     Route::get('contact', 'contact')->name('contact');
     Route::get('about', 'about')->name('about')->withoutMiddleware('auth');
     Route::get('booking', 'booking')->name('booking');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->enum('role', ['chef', 'assistant_chef', 'master_chef', 'cashier', 'delivery_agent', 'resturant_manager']);
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
