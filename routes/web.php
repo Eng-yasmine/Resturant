@@ -18,7 +18,7 @@ Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->gr
     Route::get('testimonial', 'testimonial')->name('testimonial');
 })->middleware('auth');
 
-// Route::controller(HomeController::class)->prefix('Admin.pages')->as('pages.')->group(function () {
+// Route::controller(HomeController::class)->prefix('Admin.pages`')->as('pages.')->group(function () {
 
 // });
 
@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard',[HomeController::class,'index'])->name('dashboard');
+
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ .'/admin.php';
