@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,10 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
         Debugbar::info("1234");
+        User::paginate(30);
         return view('Admin.pages.index');
     }
 

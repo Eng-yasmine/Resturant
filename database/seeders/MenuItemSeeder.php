@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\MenuItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class MenuItemSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        MenuItem::factory()->count(30)->create();
     }
 }

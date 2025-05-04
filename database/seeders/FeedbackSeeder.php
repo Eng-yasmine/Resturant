@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Feedback;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class FeedbackSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class FeedbackSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Feedback::factory()->count(30)->create();
     }
 }
