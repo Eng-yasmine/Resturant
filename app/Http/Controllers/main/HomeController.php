@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\main;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class HomeController extends Controller
 {
@@ -16,7 +19,7 @@ class HomeController extends Controller
     {
         Debugbar::info("1234");
         $users = User::latest()->paginate(perPage: 10);
-        return view('Admin.pages.index',compact('users'));
+        return view('Admin.users.index', compact('users'));
     }
 
     /**
@@ -24,15 +27,19 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.users.Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $userData = $request->validated();
+        Debugbar::startMeasure('render', 'Time for rendering');
+        $user = User::create($userData);
+        Debugbar::stopMeasure('render');
+        return redirect()->route('admin.create')->with('success', 'User added successfully');
     }
 
     /**
@@ -46,24 +53,31 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('Admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+
+        $userData = $request->validated();
+        $userData['password'] =  $request->filled('password') ? bcrypt($request->password) : $user->password;
+        unset($userData['password_confirmation']);
+
+        $user->update($userData);
+        return redirect()->route('admin.index')->with('success','User info Updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->where('id',$user->id)->delete();
+        return redirect()->route('admin.index')->with('success','User deleted Successfully');
     }
 }
