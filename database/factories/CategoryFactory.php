@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+          
         ];
     }
 }

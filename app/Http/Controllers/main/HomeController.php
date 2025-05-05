@@ -15,8 +15,8 @@ class HomeController extends Controller
     public function index(User $user)
     {
         Debugbar::info("1234");
-        User::paginate(30);
-        return view('Admin.pages.index');
+        $users = User::latest()->paginate(perPage: 10);
+        return view('Admin.pages.index',compact('users'));
     }
 
     /**
