@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
 {
+    protected $fillable=['title','content','image','user_id'];
     /**
      * Run the database seeds.
      */

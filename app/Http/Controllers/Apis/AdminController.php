@@ -53,4 +53,14 @@ class AdminController extends Controller
 
         return $this->errorResponse('Failed to update! Try again.', 404);
     }
+
+    public function destroy(User $user)
+    {
+        $user = $user->where('id', $user->id)->delete();
+
+        if ($user) {
+    return $this->successResponse($user,'User deleted Successfully', 200);
+        }
+        return $this->errorResponse('User deleted failed', 404);
+    }
 }

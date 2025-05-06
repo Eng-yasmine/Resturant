@@ -19,6 +19,7 @@ class UserPolicy
     public function viewAny(User $user)
     {
         return $user->role === 'admin';
+
     }
 
     /**
@@ -44,7 +45,6 @@ class UserPolicy
     public function update(User $user, User $model)
     {
         // مثلا، لو اليوزر هو نفس الشخص أو لو هو Admin
-        return $user->id === $model->id || $user->role === 'admin';
     }
 
     /**

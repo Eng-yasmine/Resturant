@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable()->default('default.png');
             $table->decimal('price',6,2)->default(1000.00);
             $table->enum('status',['active','inactive'])->default('active');
-            $table->foreignId('order_details_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('order_detail_id')->constrained()->cascadeOnDelete();
             // $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

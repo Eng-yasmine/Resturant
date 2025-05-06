@@ -18,5 +18,8 @@ class MenuItem extends Model
     {
     return $this->hasMany(Feedback::class);
     }
+    public function orderDetails(){
+        return $this->belongsTo(OrderDetails::class);
+    }
 
 }

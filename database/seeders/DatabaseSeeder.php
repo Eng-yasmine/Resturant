@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\OrderDetail;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,9 +24,14 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             UserSeeder::class,
+            PostSeeder::class,
             CategorySeeder::class,
+            EmployeeSeeder::class,
+            FeedbackSeeder::class,
+            MenuSeeder::class,
             MenuItemSeeder::class,
-            //  PostSeeder::class,
+            OrderDetailSeeder::class,
+            OrderSeeder::class,
 
         ]);
     }

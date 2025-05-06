@@ -79,7 +79,7 @@
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-3">
                     <!-- Logo -->
                     <a href="{{ route('dashboard') }}" class="navbar-brand p-0">
-                        <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+                        <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>{{ config('app.name') }}</h1>
                     </a>
 
                     <!-- Toggle Button for small screens -->
@@ -91,21 +91,21 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
                             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                            <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
-                            <a href="{{ url('/services') }}" class="nav-item nav-link">Services</a>
-                            <a href="{{ url('/menu') }}" class="nav-item nav-link">Menu</a>
+                            <a href="{{ route('pages.about')}}" class="nav-item nav-link">About</a>
+                            <a href="{{ route('pages.service') }}" class="nav-item nav-link">Services</a>
+                            <a href="{{ route('pages.menu') }}" class="nav-item nav-link">Menu</a>
 
                             <!-- Dropdown Pages -->
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="{{ url('/booking') }}" class="dropdown-item">Booking</a>
-                                    <a href="{{ url('/team') }}" class="dropdown-item">Our Team</a>
-                                    <a href="{{ url('/testimonial') }}" class="dropdown-item">Testimonial</a>
+                                    <a href="{{ route('pages.booking') }}" class="dropdown-item">Booking</a>
+                                    <a href="{{ route('pages.team') }}" class="dropdown-item">Our Team</a>
+                                    <a href="{{ route('pages.testimonial') }}" class="dropdown-item">Testimonial</a>
                                 </div>
                             </div>
 
-                            <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('pages.contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
 
                         <!-- User Dropdown (from Breeze) -->

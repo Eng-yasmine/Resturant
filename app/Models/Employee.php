@@ -11,10 +11,10 @@ class Employee extends Model
     /** @use HasFactory<\Database\Factories\Employee\EmployyFactory> */
     use HasFactory;
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class);
+    // }
 
 
 }

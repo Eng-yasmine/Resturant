@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class,'index'])->name('pages.index');
 
 
-Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->group(function () {
+Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->group(function () {
     Route::get('contact', 'contact')->name('contact');
     Route::get('about', 'about')->name('about')->withoutMiddleware('auth');
     Route::get('booking', 'booking')->name('booking');
@@ -16,7 +16,7 @@ Route::controller(PageController::class)->prefix('User.pages')->as('pages.')->gr
     Route::get('team', 'team')->name('team');
     Route::get('service', 'service')->name('service');
     Route::get('testimonial', 'testimonial')->name('testimonial');
-})->middleware('auth');
+});
 
 // Route::controller(HomeController::class)->prefix('Admin.pages`')->as('pages.')->group(function () {
 
