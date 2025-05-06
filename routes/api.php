@@ -15,6 +15,9 @@ Route::post('login','login');
 Route::post('logout',action: 'logout')->middleware('auth:sanctum');
 });
 
-Route::controller(AdminController::class)->prefix('Admin.users')->as(value: 'admin.')->group(function () {
+Route::controller(AdminController::class)->prefix('Admin/users')->as(value: 'admin.')->group(function () {
 Route::get('/','index')->name('index');
+Route::post('create', 'store')->name('store');
+Route::put('{user}', 'update')->name('update');
+
 });
