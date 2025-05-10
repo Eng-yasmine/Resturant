@@ -68,3 +68,22 @@ npm install && npm run dev
 
 # 6. Run the application
 php artisan serve
+
+- **Additional Setup**
+-Laravel Breeze (Authentication)
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+
+- Laravel Debugbar (Debugging)
+composer require barryvdh/laravel-debugbar --dev
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+
+- Laravel Telescope (Monitoring & Debugging)
+composer require laravel/telescope --dev
+php artisan telescope:install
+php artisan migrate
+php artisan serve
+http://127.0.0.1:8000/telescope
+
