@@ -59,7 +59,7 @@ class AdminController extends Controller
         $user = $user->where('id', $user->id)->delete();
 
         if ($user) {
-    return $this->successResponse($user,'User deleted Successfully', 200);
+            return $this->successResponse($user, 'User deleted Successfully', 200);
         }
         return $this->errorResponse('User deleted failed', 404);
     }

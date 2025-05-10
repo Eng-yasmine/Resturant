@@ -35,7 +35,7 @@
                 <select name="role" class="form-control">
                     <option value="admin">Admin</option>
                     <option value="user">User</option>
-                    <option value="customer">Customer</option>
+
                 </select>
                 <div class="mb-3">
                     <input type="submit" value="Save" class="form-control bg-success">

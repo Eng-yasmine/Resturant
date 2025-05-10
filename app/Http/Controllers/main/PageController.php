@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -34,7 +35,7 @@ class PageController extends Controller
 
     public function contact()
     {
-        return view('User.pages.menu');
+        return view('User.pages.contact');
     }
 
     public function booking()
@@ -45,5 +46,11 @@ class PageController extends Controller
     public function testimonial()
     {
         return view('User.pages.testimonial');
+    }
+    public function ContactView()
+    {
+       $contacts = Contact::with('user')->latest()->paginate(10);
+        // dd($contact);
+        return view('Admin.users.ContactView', compact('contacts'));
     }
 }

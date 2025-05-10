@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Controllers\Apis\Traits\ApiResponseTrait;
+use App\Http\Requests\StoreContactRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
@@ -81,4 +82,5 @@ class UserController extends Controller
             ['email' => 'invalid email', 'password' => 'invalid password']
         );
     }
+
 }

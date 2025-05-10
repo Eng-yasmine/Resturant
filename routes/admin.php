@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\main\HomeController;
 
@@ -14,5 +15,11 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
     Route::get('edit/{user}', 'edit')->name('edit');
     Route::put('{user}', 'update')->name('update');
     Route::delete('{user}', 'destroy')->name('delete');
+
 });
 
+Route::controller(ContactController::class)->prefix('Admin/users')->as('admin.')->group(function () {
+    Route::get('ContactView', 'store')->name('ContactView');
+    // Route::get('contact/{contact}', 'show')->name('show');
+    // Route::delete('contact/{contact}', 'destroy')->name('deleteContact');
+});

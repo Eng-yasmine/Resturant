@@ -1,9 +1,11 @@
 <?php
 
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\main\HomeController;
 use App\Http\Controllers\main\PageController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class,'index'])->name('pages.index');
 
@@ -16,11 +18,12 @@ Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->gr
     Route::get('team', 'team')->name('team');
     Route::get('service', 'service')->name('service');
     Route::get('testimonial', 'testimonial')->name('testimonial');
+    Route::get('ContactView', 'ContactView')->name('ContactView');
+});
+Route::prefix('User/pages')->as('Pages.')->group(function () {
+// Route::post('contact', action: [ContactController::class,'store'])->name('StoreContact');
 });
 
-// Route::controller(HomeController::class)->prefix('Admin.pages`')->as('pages.')->group(function () {
-
-// });
 
 
 
