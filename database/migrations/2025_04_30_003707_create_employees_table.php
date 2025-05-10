@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
+            $table->decimal('salary',6,2)->default(3000.00);
             $table->enum('gender',['male','female']);
             $table->string('national_ID');
             $table->string('image')->nullable();

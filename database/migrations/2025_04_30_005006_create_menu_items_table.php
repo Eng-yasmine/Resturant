@@ -20,7 +20,6 @@ return new class extends Migration
             $table->decimal('price',6,2)->default(1000.00);
             $table->enum('status',['active','inactive'])->default('active');
             // $table->foreignId('order_detail_id')->constrained()->cascadeOnDelete();
-            // $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

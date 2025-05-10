@@ -49,8 +49,24 @@ class PageController extends Controller
     }
     public function ContactView()
     {
-       $contacts = Contact::with('user')->latest()->paginate(10);
+        $contacts = Contact::with('user')->latest()->paginate(10);
         // dd($contact);
         return view('Admin.users.ContactView', compact('contacts'));
+    }
+    public function add_category()
+    {
+        return view('Admin.pages.addCategory');
+    }
+    public function add_employee()
+    {
+        return view('Admin.pages.addEmployee');
+    }
+    public function add_Posts()
+    {
+        return view('Admin.pages.addPost');
+    }
+    public function add_menu_item()
+    {
+        return view('Admin.pages.addMenuItem');
     }
 }

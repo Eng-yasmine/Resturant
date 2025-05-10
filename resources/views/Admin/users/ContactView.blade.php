@@ -1,5 +1,10 @@
 @extends('Admin.layouts.app')
 @section('Dashboard_title', 'Contact View')
+@section('link')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+@endsection
 @section('content')
     <div class="col-12">
 
@@ -16,7 +21,7 @@
                     <th>Subject</th>
                     <th>message</th>
                     <th>Response</th>
-                    <th>Delete</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,13 +37,17 @@
 
 
                         <td>
-                            <a href="" class="btn btn-info">Send Message</a>
+                            <a href="" class="btn btn-info">
+                                <i class="fas fa-paper-plane"></i>
+                            </a>
                         </td>
+
                         <td>
-                            <form action="" method="POST">
-                                @method('DELETE')
+                            <form action="">
                                 @csrf
-                                <input type="submit" class="btn btn-danger" value="Delete">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -47,7 +56,7 @@
         </table>
 
         <div>
-                {{ $contacts->links() }}
-            </div>
+            {{ $contacts->links() }}
+        </div>
 
     @endsection

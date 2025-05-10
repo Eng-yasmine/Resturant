@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\main\PageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\main\HomeController;
 
@@ -16,6 +17,13 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
     Route::put('{user}', 'update')->name('update');
     Route::delete('{user}', 'destroy')->name('delete');
 
+});
+
+Route::controller(PageController::class)->prefix('Admin/pages')->as('admin.')->group(function(){
+Route::get('addCategory', 'add_category')->name('addCategory');
+Route::get('addEmployee', 'add_employee')->name('addEmployee');
+Route::get('addPost', 'add_Posts')->name('addPosts');
+Route::get('addMenuItem', 'add_menu_item')->name('addMenuItem');
 });
 
 Route::controller(ContactController::class)->prefix('Admin/users')->as('admin.')->group(function () {
