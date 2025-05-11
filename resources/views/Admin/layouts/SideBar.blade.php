@@ -40,7 +40,7 @@
                     <a href="{{ route('admin.index') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Registered user
+                            Display Registered user
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -85,16 +85,25 @@
                     <a href="{{ route('posts.index') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            All Post
+                            Display Posts
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{ route('admin.addMenuItem') }}" class="nav-link active">
+                    <a href="{{ route('menus.create') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Add Menu Item
+                            Add Menu
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{ route('menus.index') }}" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Display Menu
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

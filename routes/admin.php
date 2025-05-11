@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\main\PageController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\main\HomeController;
+use App\Http\Controllers\main\PageController;
 
 
 
@@ -28,7 +29,7 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
 //     Route::delete('{post}', 'destroy')->name('delete');
 // });
 Route::resource('Admin/posts', PostController::class);
-
+Route::resource('Admin/menus', MenuController::class);
 
 Route::controller(PageController::class)->prefix('Admin/pages')->as('admin.')->group(function(){
 Route::get('addCategory', 'add_category')->name('addCategory');

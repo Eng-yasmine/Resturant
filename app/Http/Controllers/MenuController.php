@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Menu;
+use App\Models\Menu;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 
@@ -13,7 +13,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        $menus = Menu::latest()->paginate(10);
+        return view('Admin.menus.index', compact('menus'));
     }
 
     /**
@@ -21,7 +22,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.menus.create');
     }
 
     /**
@@ -29,7 +30,11 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+        $menu_validation = $request->validated();
+        $menu = Menu::create($menu_validation);
+        return $menu
+        ? redirect()->route('menus.index')->with('success', 'Menu created successfully.')
+        : redirect()->back()->with('error', 'Menu creation failed.');
     }
 
     /**
@@ -45,7 +50,8 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        $menu = Menu::find($menu->id);
+        return view('Admin.menus.edit', compact('menu'));
     }
 
     /**
@@ -53,7 +59,10 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+        $menu->update($request->validated());
+        return $menu
+        ? redirect()->route('menus.index')->with('success', 'Menu updated successfully.')
+        : redirect()->back()->with('error', 'Menu update failed.');
     }
 
     /**
@@ -61,6 +70,9 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return $menu
+        ? redirect()->route('menus.index')->with('success', 'Menu deleted successfully.')
+        : redirect()->back()->with('error', 'Menu deletion failed.');
     }
 }
