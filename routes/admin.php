@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\main\PageController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\main\HomeController;
 
@@ -18,13 +19,23 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
     Route::delete('{user}', 'destroy')->name('delete');
 
 });
+// Route::controller(PostController::class)->prefix('Admin/posts')->as('posts.')->group(function () {
+//     Route::get('create', 'create')->name('create');
+//     Route::post('create', 'store')->name('store');
+//     Route::get('index', 'index')->name('index');
+//     Route::get('edit/{post}', 'edit')->name('edit');
+//     Route::put('{post}', 'update')->name('update');
+//     Route::delete('{post}', 'destroy')->name('delete');
+// });
+Route::resource('Admin/posts', PostController::class);
+
 
 Route::controller(PageController::class)->prefix('Admin/pages')->as('admin.')->group(function(){
 Route::get('addCategory', 'add_category')->name('addCategory');
 Route::get('addEmployee', 'add_employee')->name('addEmployee');
-Route::get('addPost', 'add_Posts')->name('addPosts');
 Route::get('addMenuItem', 'add_menu_item')->name('addMenuItem');
 });
+
 
 Route::controller(ContactController::class)->prefix('Admin/users')->as('admin.')->group(function () {
     Route::get('ContactView', 'store')->name('ContactView');

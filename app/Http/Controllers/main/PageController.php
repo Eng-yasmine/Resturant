@@ -61,10 +61,10 @@ class PageController extends Controller
     {
         return view('Admin.pages.addEmployee');
     }
-    public function add_Posts()
-    {
-        return view('Admin.pages.addPost');
-    }
+    // public function add_Posts()
+    // {
+
+    // }
     public function add_menu_item()
     {
         return view('Admin.pages.addMenuItem');

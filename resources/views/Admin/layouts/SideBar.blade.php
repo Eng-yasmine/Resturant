@@ -73,10 +73,19 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="{{ route('admin.addPosts') }}" class="nav-link active">
+                    <a href="{{ route('posts.create') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Add Post
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{ route('posts.index') }}" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            All Post
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
