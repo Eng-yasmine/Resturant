@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +19,7 @@ class MenuItem extends Model
     return $this->hasMany(Feedback::class);
     }
     public function orderDetails(){
-        return $this->belongsTo(OrderDetails::class);
+        return $this->belongsTo(OrderDetail::class);
     }
 
 }

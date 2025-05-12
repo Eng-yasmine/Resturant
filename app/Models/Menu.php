@@ -13,8 +13,7 @@ class Menu extends Model
         'name',
         'status',
     ];
-    public function categories()
-    {
+public function categories(){
         return $this->hasMany(Category::class);
     }
 }

@@ -15,13 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('phone');
             $table->decimal('salary',6,2)->default(3000.00);
             $table->enum('gender',['male','female']);
             $table->string('national_ID');
-            $table->string('image')->nullable();
-            $table->enum('role', ['chef', 'assistant_chef', 'master_chef', 'cashier', 'delivery_agent', 'resturant_manager']);
+            $table->string('image')->default('default1.jpeg');
+            $table->string('address');
+            $table->date('date_of_birth');
+            $table->date('start_date');
+            $table->enum('position', ['chef','assistant_chef','master_chef','cashier','waiter','manager','security','cleaner','supervisor','delivery','receptionist','accountant']);
             // $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -33,18 +33,20 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $user = User::firstOrCreate([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        if ($user->wasRecentlyCreated) {
+            Mail::to($request->email)->send(new WelcomeMail($user));
+            event(new Registered($user));
 
-        Mail::to($request->email)->send(new WelcomeMail($user));
-        event(new Registered($user));
+        }
 
 
         Auth::login($user);

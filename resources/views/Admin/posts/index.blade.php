@@ -29,8 +29,6 @@
                         <td>{{ $post->content }}</td>
                         <td>
                             <img src="{{ $post->imageUrl() }}" alt="image" width="100" height="100">
-                          
-
                         </td>
                         <td>{{ $post->User->name }}</td>
 
@@ -38,7 +36,6 @@
                             <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-
                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                 @method('DELETE')
                                 @csrf

@@ -19,7 +19,7 @@ Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->gr
     Route::get('service', 'service')->name('service');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('ContactView', 'ContactView')->name('ContactView');
-   
+
 });
 Route::prefix('User/pages')->as('Pages.')->group(function () {
 // Route::post('contact', action: [ContactController::class,'store'])->name('StoreContact');

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Menu;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::with('Menu')->paginate(10);
+        return view('Admin.categories.index', compact('categories'));
     }
 
     /**
@@ -21,7 +23,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
+        $menus = Menu::all();
+        return view('Admin.categories.create', compact('menus'));
     }
 
     /**
@@ -29,7 +33,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $category = Category::create($validated);
+
+        return $category
+            ? redirect()->route('categories.index')->with('success', 'Category created successfully.')
+            : redirect()->back()->withErrors('Failed to create category.');
     }
 
     /**
@@ -45,7 +54,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $category = Category::with('Menu')->findOrFail($category->id);
+        return view('Admin.categories.edit', compact('category'));
     }
 
     /**
@@ -53,7 +63,13 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $validated = $request->validated();
+        $category->update($validated);
+
+        return $category
+            ? redirect()->route('categories.index')->with('success', 'Category updated successfully.')
+            : redirect()->back()->withErrors('Failed to update category.');
+
     }
 
     /**
@@ -61,6 +77,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return $category
+            ? redirect()->route('categories.index')->with('success', 'Category deleted successfully.')
+            : redirect()->back()->withErrors('Failed to delete category.');
     }
 }
