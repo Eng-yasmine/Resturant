@@ -20,7 +20,7 @@ protected $fillable = [
         return $this->belongsTo(Menu::class);
     }
 
-    public function menu_items()
+    public function menuItems()
     {
         return $this->hasMany(MenuItem::class);
     }

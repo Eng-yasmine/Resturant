@@ -12,8 +12,9 @@
 
         <h1 class="p-3 border text-center my-3">Edit Category</h1>
 
-        <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('categories.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             <div class="row">
                 <div class="form-group col-md-6 mb-3">

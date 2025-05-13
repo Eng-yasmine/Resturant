@@ -10,8 +10,9 @@
             @include('inc.message')
         </div>
         <h1 class="p-3 border text-center my-3">Edit Menu</h1>
-        <form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('menus.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group col-md-6">
                 <label>Menu Name</label>
                 <input type="text" value="{{ $menu->name }}" name="name" class="form-control" placeholder="Enter Post Content">

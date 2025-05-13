@@ -2,6 +2,7 @@
 
 use App\Category;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MenuItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PostController;
@@ -31,17 +32,21 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
 //     Route::put('{post}', 'update')->name('update');
 //     Route::delete('{post}', 'destroy')->name('delete');
 // });
-Route::resource('Admin/posts', PostController::class);
-Route::resource('Admin/menus', MenuController::class);
-Route::resource('Admin/employees', EmployeeController::class);
-Route::resource('Admin/categories',CategoryController::class);
+Route::prefix('Admin/')->group(function () {
 
-
-Route::controller(PageController::class)->prefix('Admin/pages')->as('admin.')->group(function(){
-Route::get('addCategory', 'add_category')->name('addCategory');
-Route::get('addEmployee', 'add_employee')->name('addEmployee');
-Route::get('addMenuItem', 'add_menu_item')->name('addMenuItem');
+    Route::resource('posts', PostController::class);
+    Route::resource('menus', MenuController::class);
+    Route::resource('employees', EmployeeController::class);
+    Route::resource('categories',CategoryController::class);
+    Route::resource('menuItems', MenuItemController::class);
 });
+
+
+// Route::controller(PageController::class)->prefix('Admin/pages')->as('admin.')->group(function(){
+// Route::get('addCategory', 'add_category')->name('addCategory');
+// Route::get('addEmployee', 'add_employee')->name('addEmployee');
+// Route::get('addMenuItem', 'add_menu_item')->name('addMenuItem');
+// });
 
 
 Route::controller(ContactController::class)->prefix('Admin/users')->as('admin.')->group(function () {

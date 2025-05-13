@@ -38,7 +38,7 @@ public function user()
     return $this->belongsTo(User::class); // هذا يشير إلى أن الموظف ينتمي إلى مستخدم واحد
 }
 
-  public function imageUrl()
+public function imageUrl()
 {
     return $this->image
         ? asset('storage/images/' . $this->image)

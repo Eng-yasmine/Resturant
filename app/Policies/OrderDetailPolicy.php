@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\OrderDetail;
+use App\Models\OrderDetail;
 use Illuminate\Auth\Access\Response;
 
 class OrderDetailPolicy

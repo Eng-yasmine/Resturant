@@ -41,7 +41,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-       with font-awesome or any other icon font library -->
+                with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
                     <a href="{{ route('admin.index') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -51,7 +51,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
+                {{-- <li class="nav-item menu-open">
                     <a href="{{ route('pages.ContactView') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -59,18 +59,18 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item menu-open">
-                    <a href="{{ route('admin.addCategory') }}" class="nav-link active">
+                </li> --}}
+                {{-- <li class="nav-item menu-open">
+                    <a href="{{ route('categories.create') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Add Category
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item menu-open">
-                    <a href="{{ route('admin.addEmployee') }}" class="nav-link active">
+                    <a href="{{ route('employees.create') }}" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Add Employee
@@ -150,9 +150,28 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item menu-open">
+                    <a href="{{ route('menuItems.create') }}" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Add MenuItems
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="{{ route('menuItems.index') }}" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Display MenuItems
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>
+
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

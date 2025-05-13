@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\MenuItem;
+use App\Models\MenuItem;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

@@ -9,7 +9,13 @@ class MenuItem extends Model
 {
     /** @use HasFactory<\Database\Factories\MenuItemFactory> */
     use HasFactory;
-
+protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'image',
+        'category_id',
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -21,5 +27,11 @@ class MenuItem extends Model
     public function orderDetails(){
         return $this->belongsTo(OrderDetail::class);
     }
+    public function imageUrl()
+{
+    return $this->image
+        ? asset('storage/images/' . $this->image)
+        : asset('storage/images/default.jpeg');
+}
 
 }

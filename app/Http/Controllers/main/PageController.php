@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\main;
 
-use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use App\Models\Contact;
+use App\Models\Category;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -25,8 +28,15 @@ class PageController extends Controller
 
     public function menu()
     {
-        return view('User.pages.menu');
-    }
+    //     $menus =Menu::with('categories')->latest()->get();
+    //     $categories = Category::with('menuItems')->latest()->get();
+    //     return view('User.pages.menu', compact('menus','categories'));
+    // }
+
+    $menus = Menu::with('categories.menuItems')->latest()->get();
+    return view('User.pages.menu', compact('menus'));
+}
+
 
     public function team()
     {
@@ -53,10 +63,10 @@ class PageController extends Controller
         // dd($contact);
         return view('Admin.users.ContactView', compact('contacts'));
     }
-    public function add_category()
-    {
-        return view('Admin.pages.addCategory');
-    }
+    // public function add_category()
+    // {
+    //     return view('Admin.pages.addCategory');
+    // }
     // public function add_employee()
     // {
     //     return view('Admin.pages.addEmployee');
@@ -65,8 +75,8 @@ class PageController extends Controller
     // {
 
     // }
-    public function add_menu_item()
-    {
-        return view('Admin.pages.addMenuItem');
-    }
+    // public function add_menu_item()
+    // {
+    //     return view('Admin.pages.addMenuItem');
+    // }
 }

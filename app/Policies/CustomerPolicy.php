@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Customer;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

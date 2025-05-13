@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\MenuItem;
+use App\Models\Category;
+use App\Models\MenuItem;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
 
@@ -13,7 +15,10 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-        //
+        $menuItems = MenuItem::with('category')->paginate(10);
+        // $categories = Category::all();
+        return view('Admin.menuItems.index', compact('menuItems'));
+
     }
 
     /**
@@ -21,7 +26,8 @@ class MenuItemController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('Admin.menuItems.create', compact('categories'));
     }
 
     /**
@@ -29,7 +35,19 @@ class MenuItemController extends Controller
      */
     public function store(StoreMenuItemRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        // Handle file upload if an image is provided
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('storage/images', 'public');
+            $validatedData['image'] = $path;
+        }
+
+        $menuItem = MenuItem::create($validatedData);
+
+        return $menuItem
+            ? redirect()->route('menuItems.index')->with('success', 'Menu item created successfully.')
+            : redirect()->back()->withErrors('Failed to create menu item.');
     }
 
     /**
@@ -37,7 +55,7 @@ class MenuItemController extends Controller
      */
     public function show(MenuItem $menuItem)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +63,9 @@ class MenuItemController extends Controller
      */
     public function edit(MenuItem $menuItem)
     {
-        //
+        $menuItem = MenuItem::with('category')->findOrFail($menuItem->id);
+        $categories = Category::all();
+        return view('Admin.menuItems.edit', compact('menuItem','categories'));
     }
 
     /**
@@ -53,7 +73,22 @@ class MenuItemController extends Controller
      */
     public function update(UpdateMenuItemRequest $request, MenuItem $menuItem)
     {
-        //
+        $validatedData = $request->validated();
+
+        // Handle file upload if an image is provided
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($menuItem->image && Storage::exists('storage/images/' . $menuItem->image)) {
+                Storage::delete('storage/images/' . $menuItem->image);
+            }
+
+            $path = $request->file('image')->store('storage/images', 'public');
+            $validatedData['image'] = $path;
+        }
+
+        $menuItem->update($validatedData);
+
+        return redirect()->route('menuItems.index')->with('success', 'Menu item updated successfully.');
     }
 
     /**
@@ -61,6 +96,10 @@ class MenuItemController extends Controller
      */
     public function destroy(MenuItem $menuItem)
     {
-        //
+        $menuItem->delete();
+        if ($menuItem->image && Storage::exists('storage/images/' . $menuItem->image)) {
+            Storage::delete('storage/images/' . $menuItem->image);
+        }
+        return redirect()->route('menuItems.index')->with('success', 'Menu item deleted successfully.');
     }
 }

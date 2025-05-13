@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Feedback;
+use App\Models\Feedback;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 

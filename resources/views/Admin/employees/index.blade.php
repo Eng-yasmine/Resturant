@@ -43,10 +43,11 @@
                         <td>{{ $employee->address }}</td>
                         <td>{{ $employee->date_of_birth }}</td>
                         <td>
-                            <img src="{{ $employee->imageUrl() }}" alt="image" width="100" height="100">
+                            <img src="{{ $employee->imageUrl() }}" alt="Menu Item Image"
+                                style="width: 100px; height: 100px;">
                         </td>
                         <td>{{ $employee->start_date }}</td>
-                        <td>
+                    <td>
                             <span @class([
                                 'badge bg-primary' => in_array($employee->position, [
                                     'master_chef',
@@ -74,8 +75,7 @@
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('employees.edit',  $employee->id) }}"
-                                class="btn btn-info">Edit</a>
+                            <a href="{{ route('employees.edit', parameters: $employee->id) }}" class="btn btn-info">Edit</a>
                         </td>
                         <td>
                             <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="d-inline">

@@ -18,7 +18,8 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role === 'admin';
+        // return $user->role === 'admin';
+        return false;
     }
 
     /**
@@ -31,7 +32,8 @@ class UserPolicy
     public function view(User $user, User $model)
     {
         // مثلا، لو اليوزر اللي عايز يشوف صفحة اليوزر ده هو نفس اليوزر أو هو Admin
-        return $user->id === $model->id || $user->role === 'admin';
+        // return $user->id === $model->id || $user->role === 'admin';
+        return false;
     }
 
     /**
@@ -43,7 +45,8 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->id === $model->id;
+        // return $user->id === $model->id;
+        return false;
     }
 
     /**
@@ -56,6 +59,7 @@ class UserPolicy
     public function delete(User $user, User $model)
     {
 
-        return $user->role === 'admin';
+        // return $user->role === 'admin';
+        return false;
     }
 }

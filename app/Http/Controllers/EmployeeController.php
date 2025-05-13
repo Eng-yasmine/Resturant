@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 
+use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreEmployeeRequest;
@@ -25,12 +26,13 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        $users= User::all();
         $user = auth()->user();
         if (!$user) {
             return redirect()->route('login')->withErrors('You must be logged in to perform this action.');
         }
-        return ($user->role !== 'admin')
-            ? view('Admin.employees.create', compact('user'))
+        return ($user->role == 'admin')
+            ? view('Admin.employees.create', compact('users'))
             : redirect()->back()->withErrors('You do not have permission to create an employee.');
 
     }
