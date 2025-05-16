@@ -33,7 +33,7 @@ class StoreEmployeeRequest extends FormRequest
             'salary' => 'required|numeric|min:0',
             'gender' => 'required|in:female,male',
             'national_ID' => 'required|string|max:20',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

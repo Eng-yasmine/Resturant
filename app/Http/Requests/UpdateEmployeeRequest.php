@@ -33,7 +33,7 @@ class UpdateEmployeeRequest extends FormRequest
             'date_of_birth' => 'required|date',
             'start_date' => 'required|date',
             'national_ID' => 'required|string|max:20',
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'gender' => 'required|in:female,male',
         ];
     }

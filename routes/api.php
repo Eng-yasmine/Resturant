@@ -6,6 +6,7 @@ use App\Http\Controllers\Apis\UserController;
 use App\Http\Controllers\Apis\AdminController;
 use App\Http\Controllers\Apis\menus\MenuController;
 use App\Http\Controllers\Apis\Posts\PostController;
+use App\Http\Controllers\Apis\Employees\EmployeeController;
 use App\Http\Controllers\Apis\menuItems\MenuItemController;
 use App\Http\Controllers\Apis\categories\CategoryController;
 
@@ -33,5 +34,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('menus', MenuController::class);
     Route::apiResource('categories',CategoryController::class);
     Route::apiResource('menuItems', MenuItemController::class);
+    Route::apiResource('employees', EmployeeController::class);
 });
 

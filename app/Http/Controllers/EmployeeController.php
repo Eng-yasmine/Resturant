@@ -26,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $users= User::all();
+        $users = User::all();
         $user = auth()->user();
         if (!$user) {
             return redirect()->route('login')->withErrors('You must be logged in to perform this action.');
@@ -43,7 +43,8 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         $validatedData = $request->validated();
-        $validatedData['user_id'] = auth()->id(); // Set the user_id to the authenticated user's ID
+        $validatedData['user_id'] = auth()->check() ? auth()->id() : null;
+        // Set the user_id to the authenticated user's ID
 
         $imageName = "default.jpeg"; // Initialize the imageName
 
