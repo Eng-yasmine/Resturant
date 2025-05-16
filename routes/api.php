@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\Apis\AdminController;
-use App\Http\Controllers\Apis\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Apis\UserController;
+use App\Http\Controllers\Apis\AdminController;
+use App\Http\Controllers\Apis\menus\MenuController;
+use App\Http\Controllers\Apis\Posts\PostController;
+use App\Http\Controllers\Apis\menuItems\MenuItemController;
+use App\Http\Controllers\Apis\categories\CategoryController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,3 +27,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{user}', 'destroy')->name('delete');
     });
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('posts', PostController::class);
+    Route::apiResource('menus', MenuController::class);
+    Route::apiResource('categories',CategoryController::class);
+    Route::apiResource('menuItems', MenuItemController::class);
+});
+

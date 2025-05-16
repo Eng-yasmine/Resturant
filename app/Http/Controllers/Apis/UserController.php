@@ -32,7 +32,7 @@ class UserController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
 
-            ], 'success registered');
+            ], 'success registered', 201);
         } else {
             return $this->errorResponse('invalid data', 400, ['email' => 'invalid email', 'password' => 'week password']);
         }

@@ -33,7 +33,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>
                         <td>
-                            <img src="{{  asset('storage/images/').$item->image }}" alt="Menu Item Image"
+                            <img src="{{  asset('storage/images/') . $item->image }}" alt="Menu Item Image"
                                 style="width: 100px; height: 100px;">
                         </td>
                         <td>{{ $item->price }}</td>
