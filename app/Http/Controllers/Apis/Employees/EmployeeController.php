@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Apis\Employees;
 
-use App\Http\Controllers\Apis\Traits\ApiResponseTrait;
-use App\Http\Requests\StoreEmployeeRequest;
-use App\Http\Requests\UpdateEmployeeRequest;
-use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Session\Store;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Resources\EmployeeResource;
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
+use App\Http\Controllers\Apis\Traits\ApiResponseTrait;
 
 class EmployeeController extends Controller
 {
@@ -34,12 +35,19 @@ class EmployeeController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = auth()->check() ? auth()->id() : null;
+        // Set the user_id to the authenticated user's ID
+
+        $imageName = "default.jpeg"; // Initialize the imageName
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('storage/images', 'public');
-            $validatedData['image'] = $path;
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('/storage/images'), $imageName);
+
         }
+
+        $validatedData['image'] = $imageName; // Only assign if the image was uploaded
         $employee = Employee::create($validatedData);
+
         return $employee
         ? $this->successResponse(new EmployeeResource($employee), 'Employee created successfully', 201)
         : $this->errorResponse('Failed to create employee', 400);
@@ -67,13 +75,19 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $validatedData = $request->validated();
-        $validatedData['user_id'] = auth()->check() ? auth()->id() : null;
+        $validatedData['user_id'] = auth()->id(); // Set the user_id to the authenticated user's ID
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('storage/images', 'public');
-            $validatedData['image'] = $path;
+            if (File::exists(public_path('storage/images/' . $employee->image))) {
+                File::delete(public_path('storage/images/' . $employee->image));
+            }
+            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('/storage/images'), $imageName);
+            $validatedData['image'] = $imageName;
         }
+
         $employee->update($validatedData);
+
         return $employee
             ? $this->successResponse(new EmployeeResource($employee), 'Employee updated successfully', 200)
             : $this->errorResponse('Failed to update employee', 400);

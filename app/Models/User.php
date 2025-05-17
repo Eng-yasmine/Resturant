@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contact::class);
     }
+
+    public function tables()
+    {
+        return $this->hasMany(Table::class);
+    }
 }

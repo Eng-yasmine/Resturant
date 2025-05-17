@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\main;
 
+use App\Models\Employee;
 use App\Models\Menu;
 use App\Models\Contact;
 use App\Models\Category;
@@ -18,7 +19,8 @@ class PageController extends Controller
 
     public function about()
     {
-        return view('User.pages.about');
+        $employees = Employee::with('user')->latest()->paginate(5);
+        return view('User.pages.about', compact('employees'));
     }
 
     public function service()

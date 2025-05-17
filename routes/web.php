@@ -21,9 +21,7 @@ Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->gr
     Route::get('ContactView', 'ContactView')->name('ContactView');
 
 });
-Route::prefix('User/pages')->as('Pages.')->group(function () {
-// Route::post('contact', action: [ContactController::class,'store'])->name('StoreContact');
-});
+    Route::post('contact', [ContactController::class,'store'])->name('StoreContact');
 
 
 

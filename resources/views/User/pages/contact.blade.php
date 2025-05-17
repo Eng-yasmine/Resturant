@@ -44,10 +44,12 @@
                         tabindex="0"></iframe>
                 </div>
                 <div class="col-md-6">
-                    @include('inc.message')
+                    <div id="form-messages">@include('inc.message')</div>
+
+                    {{-- @include('inc.message') --}}
                     <div class="wow fadeInUp" data-wow-delay="0.2s">
-                       <form id="contactForm" action="{{ route('Pages.StoreContact') }}" method="post">
-F
+                <form id="contactForm" action="{{ route('StoreContact') }}" method="post">
+
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -89,7 +91,7 @@ F
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit" id="sendBtn">Send Message</button>
-[]
+
                                 </div>
                             </div>
                         </form>
@@ -98,6 +100,62 @@ F
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        $('#contactForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const formMessages = $('#form-messages');
+            const sendBtn = $('#sendBtn');
+
+            sendBtn.prop('disabled', true).text('Sending...');
+
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (response) {
+                    formMessages.html(`
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            ${response.message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `);
+                    form[0].reset();
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        let errorList = '<ul>';
+                        $.each(errors, function (key, value) {
+                            errorList += `<li>${value[0]}</li>`;
+                        });
+                        errorList += '</ul>';
+                        formMessages.html(`
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                ${errorList}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
+                    } else {
+                        formMessages.html(`
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                An error occurred. Please try again.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `);
+                    }
+                },
+                complete: function () {
+                    sendBtn.prop('disabled', false).text('Send Message');
+                }
+            });
+        });
+    });
+</script>
 @endsection
 
 

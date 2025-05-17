@@ -3,6 +3,7 @@
 use App\Category;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PostController;
@@ -24,6 +25,8 @@ Route::controller(HomeController::class)->prefix('admin/users')->as('admin.')->g
     Route::delete('{user}', 'destroy')->name('delete');
 
 });
+
+Route::resource('tables', TableController::class);
 // Route::controller(PostController::class)->prefix('Admin/posts')->as('posts.')->group(function () {
 //     Route::get('create', 'create')->name('create');
 //     Route::post('create', 'store')->name('store');

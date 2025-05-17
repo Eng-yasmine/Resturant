@@ -7,7 +7,7 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>4</h3>
+                            <h3>{{ auth()->user()->count() }}</h3>
 
                             <p>User Registrations</p>
                         </div>

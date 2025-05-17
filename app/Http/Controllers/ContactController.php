@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Apis\Traits\ApiResponseTrait;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,17 +12,20 @@ use App\Http\Requests\StoreContactRequest;
 
 class ContactController extends Controller
 {
-    public function store(StoreContactRequest $request ,User $user)
-    {
-        $contactData = $request->validated();
+    use ApiResponseTrait;
+    public function store(StoreContactRequest $request, User $user)
+{
+    $contactData = $request->validated();
+    $contact = Contact::create($contactData);
 
-        $contacts = Contact::create($contactData);
-
-        if ($contacts->withRelationshipAutoloading()) {
-            // Mail::to(auth()->user()->email)->send(new ContactMessageMail($user));
-            return redirect()->back()->with("success",  "Thank you for contacting us!  We will contact you soon.");
-
-        }
-        return redirect()->back()->withErrors('something error ! please try again');
+    // ✅ لو AJAX: رجع JSON
+    if ($request->ajax()) {
+        return $this->successResponse($contact, 'Contact created successfully', 201);
     }
+
+    return $contact
+    ? redirect()->back()->with('success', 'Thank you for contacting us! We will contact you soon.')
+    : redirect()->back()->withErrors('Failed to create contact.');
+}
+
 }

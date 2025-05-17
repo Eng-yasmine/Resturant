@@ -33,7 +33,7 @@ class EmployeeController extends Controller
         }
         return ($user->role == 'admin')
             ? view('Admin.employees.create', compact('users'))
-            : redirect()->back()->withErrors('You do not have permission to create an employee.');
+            : redirect()->back()->withErrors('You do not have permission to create an employee , this action is only for admin');
 
     }
 
