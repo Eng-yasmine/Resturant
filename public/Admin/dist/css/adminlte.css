@@ -32860,6 +32860,13 @@ a.text-muted:hover {
   color: #c2c7d0;
 }
 
+.sidebar {
+    height: calc(100vh - 57px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+
 .accent-gray-dark [class*="sidebar-dark-"] .sidebar a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):hover {
   color: #fff;
 }

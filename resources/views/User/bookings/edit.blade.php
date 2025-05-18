@@ -26,11 +26,12 @@
             </div>
             <div class="col-md-6 bg-dark d-flex align-items-center">
                 <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                    <div>@include('inc.message')</div>
                     <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                    <h1 class="text-white mb-4">Book A Table Online</h1>
-                    <form action="{{ route('bookings.store') }}" method="POST">
+                    <h1 class="text-white mb-4">Edit Booking Table Online</h1>
+                    <form action="{{ route('bookings.update') }}" method="POST">
                         @csrf
+                        @method('PUT')
+                        <input type="hidden" name="id" value="{{ $booking->id }}">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -49,36 +50,21 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="tel" class="form-control" value="{{ old('phone') }}" name="phone"
-                                        id="phone" placeholder="Your Phone">
+                                    <input type="phone" class="form-control" value="{{ $request->phone }}" name="phone" id="phone"
+                                        placeholder="Your Phone">
                                     <label for="phone">Your Phone</label>
                                 </div>
                             </div>
 
-                            <input type="hidden" name="status" value="pending" />
-
-
-
-
-                            <!-- Booking Date -->
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="date" class="form-control" name="booking_date" id="booking_date"
-                                        value="{{ old('booking_date') }}">
-                                    <label for="booking_date">Booking Date</label>
+                                <div class="form-floating date" id="date3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" name="date_and_time"
+                                        id="datetime" placeholder="Date & Time" data-target="#date3"
+                                        data-toggle="datetimepicker" />
+                                    <label for="datetime">Date & Time</label>
                                 </div>
                             </div>
-
-                            <!-- Booking Time -->
                             <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="time" class="form-control" name="booking_time" id="booking_time"
-                                        value="{{ old('booking_time') }}">
-                                    <label for="booking_time">Booking Time</label>
-                                </div>
-                            </div>
-
-                            {{-- <div class="col-md-6">
                                 <div class="form-floating">
                                     <select class="form-select" name="seats" id="seats">
                                         @for ($i = 1; $i <= 10; $i++)
@@ -86,26 +72,23 @@
                                         @endfor
                                     </select>
 
-
-
                                     <label for="select1">No Of People</label>
                                 </div>
-                            </div> --}}
-                            <div class="col-6">
+                            </div>
+                            <div class="col-12">
                                 <div class="form-floating">
                                     <select class="form-select" name="table_id" id="table_number">
-                                        @foreach ($tables as $table)
-                                            <option value="{{ $table->id }}">
-                                                Table {{ $table->table_number }} (Seats: {{ $table->seats }})
+                                        @foreach ($bookings as $booking)
+                                            <option value="{{ $booking->table_id }}" data-seats="{{ $table->seats }}">
+                                                Table {{ $booking->table_id }} (Seats: {{ $booking->table->seats }})
                                             </option>
                                         @endforeach
-
                                     </select>
                                     <label for="table_number">Select Table</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">Update Book Now</button>
                             </div>
                         </div>
                     </form>

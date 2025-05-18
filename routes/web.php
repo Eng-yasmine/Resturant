@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -22,8 +23,8 @@ Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->gr
 
 });
     Route::post('contact', [ContactController::class,'store'])->name('StoreContact');
-
-
+Route::resource('bookings',BookingController::class);
+Route::get('/bookings/{id}/pdf', [BookingController::class, 'generatePDF'])->name('bookings.pdf');
 
 
 Route::middleware('auth')->group(function () {

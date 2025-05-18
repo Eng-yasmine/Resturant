@@ -13,7 +13,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::with('user')->latest()->paginate(10);
+        $tables = Table::latest()->paginate(10);
         return view('Admin.tables.index', compact('tables'));
     }
 
@@ -22,7 +22,8 @@ class TableController extends Controller
      */
     public function create()
     {
-    
+        $tables = Table::where('status','available')->latest()->paginate(10);
+        return view('Admin.tables.create', compact('tables'));
     }
 
     /**
@@ -30,7 +31,14 @@ class TableController extends Controller
      */
     public function store(StoreTableRequest $request)
     {
-        //
+        $validated = $request->validated();
+        // $validated['user_id'] = auth()->check() ? auth()->user()->id : null;
+        $table = Table::create($validated);
+
+        return $table
+            ? redirect()->route('tables.index')->with('success', 'Table Booking successfully.')
+            : redirect()->back()->withErrors( 'Failed to Book Table.');
+
     }
 
     /**
@@ -46,7 +54,7 @@ class TableController extends Controller
      */
     public function edit(Table $table)
     {
-        //
+
     }
 
     /**
@@ -54,7 +62,13 @@ class TableController extends Controller
      */
     public function update(UpdateTableRequest $request, Table $table)
     {
-        //
+        $validated = $request->validated();
+        // $validated['user_id'] = auth()->check() ? auth()->user()->id : null;
+        $table = Table::update($validated);
+
+        return $table
+            ? redirect()->route('tables.index')->with('success', 'Table Booking successfully.')
+            : redirect()->back()->withErrors( 'Failed to Book Table.');
     }
 
     /**
@@ -62,6 +76,7 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        //
+        $table->delete();
+        return redirect()->route('tables.index')->with('success', 'Table Booking deleted successfully.');
     }
 }

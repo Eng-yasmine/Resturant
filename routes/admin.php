@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\main\HomeController;
 use App\Http\Controllers\main\PageController;
+use App\Http\Controllers\BookingController;
 
 
 
@@ -40,8 +41,18 @@ Route::prefix('Admin/')->group(function () {
     Route::resource('posts', PostController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('employees', EmployeeController::class);
-    Route::resource('categories',CategoryController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('menuItems', MenuItemController::class);
+});
+
+// routes/web.php
+
+Route::prefix('Admin/bookings')->group(function () {
+Route::get('{booking}/updateStatus', [BookingController::class, 'editStatus'])->name('booking.edit');
+
+Route::put('{booking}/', [BookingController::class, 'updateStatus'])
+    ->name('updateStatus');
+
 });
 
 

@@ -12,10 +12,11 @@ class Table extends Model
     protected $fillable = [
         'table_number',
         'status',
-        'user_id',
+        'seats',
     ];
-    public function user()
+   public function bookings()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Booking::class);
     }
+
 }

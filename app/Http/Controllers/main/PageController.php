@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\main;
 
+use App\Models\Booking;
 use App\Models\Employee;
 use App\Models\Menu;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\MenuItem;
+use App\Models\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -50,9 +52,12 @@ class PageController extends Controller
         return view('User.pages.contact');
     }
 
+
     public function booking()
     {
-        return view('User.pages.booking');
+        $bookings = Booking::with('user')->get();
+        $tables = Table::where('status','available')->get();
+        return view('User.pages.booking', compact(['bookings','tables']));
     }
 
     public function testimonial()

@@ -11,7 +11,7 @@ class UpdateTableRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'table_number' => 'required|integer',
+            'status' => 'required|in:busy,available',
+            'seats' => 'required|integer|min:1|max:10',
         ];
     }
 }

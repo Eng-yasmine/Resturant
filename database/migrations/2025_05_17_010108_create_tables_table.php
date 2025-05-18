@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('table_number');
             $table->enum('status',['busy','available'])->default('available');
             $table->tinyInteger('seats')->default(1);
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

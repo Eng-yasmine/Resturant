@@ -16,7 +16,7 @@
                     <th scope="col">Table Number</th>
                     <th scope="col">Table Status</th>
                     <th scope="col">Table Seats</th>
-                    <th scope="col">User Name</th>
+                    {{-- <th scope="col">User Name</th> --}}
                     <th scope="col">ِAction</th>
 
                 </tr>
@@ -28,7 +28,7 @@
                         <td>{{ $table->table_number }}</td>
                         <td>{{ $table->status }}</td>
                         <td>{{ $table->seats }}</td>
-                        <td>{{ $table->User->name }}</td>
+                        {{-- <td>{{ $table->User->name }}</td> --}}
 
                         <td>
                             <a class="btn btn-primary" href="{{ route('tables.edit',$table->id) }}">
