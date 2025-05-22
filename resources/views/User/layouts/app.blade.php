@@ -35,6 +35,7 @@
 
 <!-- JavaScript Libraries -->
 @include('User.layouts.scripts')
+@yield('scripts')
 
  <!-- Optional -->
 </body>

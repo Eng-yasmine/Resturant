@@ -13,8 +13,8 @@ class BookingConfirmedMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $booking;
-      public $user;
-      public $table;
+    public $user;
+    public $table;
 
     /**
      * Create a new message instance.
@@ -39,7 +39,7 @@ class BookingConfirmedMail extends Mailable
     public function build()
     {
         return $this->subject('Booking Confirmed')
-            ->markdown('emails.booking.confirmed')
+            ->markdown('mails.booking.confirmed')
             ->with(['booking' => $this->booking, 'user' => $this->user, 'table' => $this->table]);
     }
     /**
@@ -48,7 +48,7 @@ class BookingConfirmedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.booking.confirmed',
+            markdown: 'mails.booking.confirmed',
         );
     }
 

@@ -100,6 +100,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('pages.booking') }}" class="dropdown-item">Booking</a>
+                                <a href="{{ route('carts.index') }}" class="dropdown-item">Cart</a>
                                 <a href="{{ route('pages.team') }}" class="dropdown-item">Our Team</a>
                                 <a href="{{ route('pages.testimonial') }}" class="dropdown-item">Testimonial</a>
                             </div>

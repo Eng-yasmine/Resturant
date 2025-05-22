@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\main;
 
-use App\Models\Booking;
-use App\Models\Employee;
+use App\Models\Cart;
 use App\Models\Menu;
+use App\Models\Order;
+use App\Models\Table;
+use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Employee;
 use App\Models\MenuItem;
-use App\Models\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,14 +34,11 @@ class PageController extends Controller
 
     public function menu()
     {
-    //     $menus =Menu::with('categories')->latest()->get();
-    //     $categories = Category::with('menuItems')->latest()->get();
-    //     return view('User.pages.menu', compact('menus','categories'));
-    // }
+//  $menuItems = MenuItem::all();
 
-    $menus = Menu::with('categories.menuItems')->latest()->get();
-    return view('User.pages.menu', compact('menus'));
-}
+        $menus = Menu::with('categories.menuItems')->latest()->get();
+        return view('User.pages.menu', compact('menus'));
+    }
 
 
     public function team()
@@ -56,8 +55,8 @@ class PageController extends Controller
     public function booking()
     {
         $bookings = Booking::with('user')->get();
-        $tables = Table::where('status','available')->get();
-        return view('User.pages.booking', compact(['bookings','tables']));
+        $tables = Table::where('status', 'available')->get();
+        return view('User.pages.booking', compact(['bookings', 'tables']));
     }
 
     public function testimonial()
@@ -70,20 +69,7 @@ class PageController extends Controller
         // dd($contact);
         return view('Admin.users.ContactView', compact('contacts'));
     }
-    // public function add_category()
-    // {
-    //     return view('Admin.pages.addCategory');
-    // }
-    // public function add_employee()
-    // {
-    //     return view('Admin.pages.addEmployee');
-    // }
-    // public function add_Posts()
-    // {
 
-    // }
-    // public function add_menu_item()
-    // {
-    //     return view('Admin.pages.addMenuItem');
-    // }
+
+
 }

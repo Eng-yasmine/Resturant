@@ -31,7 +31,13 @@ protected $fillable = [
 {
     return $this->image
         ? asset('storage/images/' . $this->image)
-        : asset('storage/images/default.jpeg');
+        : asset('storage/images/' .'default.jpeg');
 }
+
+public function carts()
+{
+    return $this->hasMany(Cart::class);
+}
+
 
 }

@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
 use App\Models\User;
-use App\OrderDetail;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\OrderDetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(1)->create();
+        Menu::factory(2)->create();
 
 
         $this->call([

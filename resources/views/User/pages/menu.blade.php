@@ -55,7 +55,7 @@
                                         <div class="col-lg-6">
                                             <div class="d-flex align-items-center">
                                                 <img class="flex-shrink-0 img-fluid rounded"
-                                                    src="{{ asset('storage/images' . $item->image) }}"
+                                                    src="{{ asset('storage/images/' . $item->image) }}"
                                                     alt="{{ $item->name }}" style="width: 80px;">
                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
@@ -64,11 +64,20 @@
                                                     </h5>
                                                     <small class="fst-italic">{{ $item->description }}</small>
                                                 </div>
-                                            <div>
-                                                            <button class="btn btn-sm btn-outline-primary">
-                                                                <i class="fa fa-plus"></i> Order
-                                                            </button>
-                                                        </div>
+                                                <div>
+                                                    <form action="{{ route('carts.store') }}" method="POST"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                       <input type="hidden" name="menu_item_id" value="{{ $item->id }}">
+
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit" class="btn btn-outline-primary">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                    </form>
+
+
+                                                </div>
                                             </div>
                                         </div>
                                     @empty

@@ -50,12 +50,15 @@ class User extends Authenticatable
         ];
     }
     public function orders(){
+        
         return $this->hasMany(Order::class);
     }
     public function feedbacks(){
+
         return $this->hasMany(Feedback::class);
     }
     public function posts(){
+
         return $this->hasMany(Post::class);
     }
 
@@ -68,5 +71,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
-   
+
+    public function carts()
+{
+    return $this->hasMany(Cart::class);
+}
+
+
 }

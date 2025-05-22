@@ -50,7 +50,7 @@
                             <a class="btn btn-primary" href="{{ route('booking.edit', $booking->id) }}">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" >
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger delete-btn" data-id="{{ $booking->id }}">

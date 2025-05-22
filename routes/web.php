@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -20,11 +21,16 @@ Route::controller(PageController::class)->prefix('User/pages')->as('pages.')->gr
     Route::get('service', 'service')->name('service');
     Route::get('testimonial', 'testimonial')->name('testimonial');
     Route::get('ContactView', 'ContactView')->name('ContactView');
+    // Route::get('cart', 'Cart')->name('Cart');
 
 });
+
     Route::post('contact', [ContactController::class,'store'])->name('StoreContact');
 Route::resource('bookings',BookingController::class);
 Route::get('/bookings/{id}/pdf', [BookingController::class, 'generatePDF'])->name('bookings.pdf');
+Route::resource('carts',CartController::class);
+Route::post('cart/increase/{cart}', [CartController::class, 'increaseQuantity'])->name('cart.increase');
+Route::post('cart/decrease/{cart}', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
 
 
 Route::middleware('auth')->group(function () {
