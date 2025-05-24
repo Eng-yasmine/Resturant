@@ -73,7 +73,7 @@
 
                     <tr>
                         <td colspan="5" class="text-end">
-                            <a href="" class="btn btn-primary">Proceed to Checkout</a>
+                            <a href="{{ route('cart.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
                             <a href="{{ route('pages.menu') }}" class="btn btn-secondary">Back to Menu</a>
                         </td>
                     </tr>

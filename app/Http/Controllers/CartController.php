@@ -38,7 +38,7 @@ class CartController extends Controller
     $menuItem = MenuItem::findOrFail($validated['menu_item_id']);
     $validated['price'] = $menuItem->price;
 
-    // هل المنتج موجود في الكارت؟
+    
     $existingCartItem = Cart::where('user_id', $userId)
                             ->where('menu_item_id', $validated['menu_item_id'])
                             ->first();
@@ -51,14 +51,14 @@ class CartController extends Controller
         // لو مش موجود، أضف جديد
         Cart::create($validated);
     }
-
+     $cartItemCount =Cart::count();
     return redirect()->route('carts.index')->with('success', 'Item added to cart successfully');
 }
 
 
 
-    public function increaseQuantity(Cart $cart)
-    {
+public function increaseQuantity(Cart $cart)
+{
         $cart->quantity++ ;
         $cart->save();
 
@@ -69,8 +69,8 @@ class CartController extends Controller
     }
 }
 
-    public function decreaseQuantity(Cart $cart)
-    {
+public function decreaseQuantity(Cart $cart)
+{
 
     if ($cart->quantity > 1) {
         $cart->quantity--;
@@ -92,18 +92,26 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cart $cart)
-    {
+public function show(Cart $cart)
+{
         //
-    }
+}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cart $cart)
-    {
-        //دي هعملها ليه
-    }
+public function checkout(Cart $cart)
+{
+        $user_id = auth()->id();
+        $cartItems = Cart::with('menuItem')->where('user_id', $user_id)->get();
+
+        if($cartItems->isEmpty()){
+            return redirect()->route('pages.menu')->withErrors('Your Cart is Empty');
+        }
+        $total = $cartItems->sum(fn($item)=> $item->quantity * $item->price);
+        return view('User.carts.checkout', compact('cartItems','total'));
+
+}
 
     /**
      * Update the specified resource in storage.

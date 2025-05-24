@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,12 @@ Route::get('/bookings/{id}/pdf', [BookingController::class, 'generatePDF'])->nam
 Route::resource('carts',CartController::class);
 Route::post('cart/increase/{cart}', [CartController::class, 'increaseQuantity'])->name('cart.increase');
 Route::post('cart/decrease/{cart}', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
+Route::get('User/carts/checkout', [CartController::class,'checkout'])->name('cart.checkout');
+Route::resource('orders',OrderController::class);
+Route::post('orders/confirm',[OrderController::class,'confirm_order'])->name('order.confirm');
+Route::get('orders/confirm/{order}', [OrderController::class, 'showConfirmation'])->name('order.confirm.show');
+Route::get('orders/track/{order}',[OrderController::class,'trcking_order'])->name('order.tracking');
+
 
 
 Route::middleware('auth')->group(function () {

@@ -18,11 +18,14 @@ return new class extends Migration
             $table->integer('quantity')->default(0);
             $table->integer('quantity_price')->default(1);
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+             $table->unsignedBigInteger('menu_item_id')->nullable();
             $table->timestamps();
         });
     }
 
     /**
+     *
+     *     $table->foreignId('menu_item_id')->constrained()->cascadeOnDelete();
      * Reverse the migrations.
      */
     public function down(): void

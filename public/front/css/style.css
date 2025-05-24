@@ -307,6 +307,21 @@
     border-top: 22px solid transparent;
     border-bottom: 22px solid transparent;
 }
+.nav-link.position-relative {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-link .badge {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  font-size: 0.75rem;
+  padding: 0.25em 0.5em;
+  border-radius: 50%;
+}
+
 
 @keyframes pulse-border {
     0% {

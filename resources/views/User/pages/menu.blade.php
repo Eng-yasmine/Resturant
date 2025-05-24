@@ -65,13 +65,13 @@
                                                     <small class="fst-italic">{{ $item->description }}</small>
                                                 </div>
                                                 <div>
-                                                    <form action="{{ route('carts.store') }}" method="POST"
+                                                    <form action="{{ route('carts.store') }}" class="add-to-cart-form" method="POST"
                                                         style="display:inline;">
                                                         @csrf
                                                        <input type="hidden" name="menu_item_id" value="{{ $item->id }}">
 
                                                         <input type="hidden" name="quantity" value="1">
-                                                        <button type="submit" class="btn btn-outline-primary">
+                                                        <button type="submit" class="btn btn-outline-primary add-to-cart-btn">
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </button>
                                                     </form>
@@ -93,4 +93,35 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.add-to-cart-form').submit(function(e) {
+        e.preventDefault(); // منع الإرسال التقليدي
+
+        let form = $(this);
+        let url = form.attr('action');
+        let data = form.serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+           success: function(response) {
+    if(response.cartItemCount !== undefined){
+        $('#cart-count').text(response.cartItemCount);
+    }
+    alert('Item added to cart successfully!');
+},
+
+            error: function(xhr) {
+                alert('Failed to add item to cart. Please try again.');
+            }
+        });
+    });
+});
+</script>
+
 @endsection

@@ -94,13 +94,19 @@
                         <a href="{{ route('pages.about') }}" class="nav-item nav-link">About</a>
                         <a href="{{ route('pages.service') }}" class="nav-item nav-link">Services</a>
                         <a href="{{ route('pages.menu') }}" class="nav-item nav-link">Menu</a>
+        <a href="{{ route('carts.index') }}" class="nav-link position-relative" id="cart-link">
+    <i class="fa fa-shopping-cart fa-lg"></i>
+    <span class="badge bg-danger" id="cart-count">{{ \App\Models\Cart::count() }}</span>
+</a>
+
+
+
 
                         <!-- Dropdown Pages -->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('pages.booking') }}" class="dropdown-item">Booking</a>
-                                <a href="{{ route('carts.index') }}" class="dropdown-item">Cart</a>
                                 <a href="{{ route('pages.team') }}" class="dropdown-item">Our Team</a>
                                 <a href="{{ route('pages.testimonial') }}" class="dropdown-item">Testimonial</a>
                             </div>

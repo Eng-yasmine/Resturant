@@ -18,7 +18,9 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('User.pages.index');
+        $menus = Menu::with('categories.menuItems')->latest()->get();
+
+        return view('User.pages.index', compact('menus'));
     }
 
     public function about()
