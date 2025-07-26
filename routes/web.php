@@ -4,6 +4,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -49,3 +50,10 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 require __DIR__ .'/admin.php';
+
+Route::prefix('github')->name('github.')->controller(SocialiteController::class)->group(function () {
+Route::get('/login','login')->name('login');
+Route::get('/redirect','redirect')->name('redirect');
+// Route::get('/callback','callback')->name('callback');
+});
+

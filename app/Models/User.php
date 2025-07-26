@@ -24,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'provider_id',
+        // 'phone_number',
 
     ];
 
@@ -50,7 +52,7 @@ class User extends Authenticatable
         ];
     }
     public function orders(){
-        
+
         return $this->hasMany(Order::class);
     }
     public function feedbacks(){
